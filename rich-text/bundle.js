@@ -43872,30 +43872,69 @@
 	  var Base = function (_React$Component) {
 	    _inherits(Base, _React$Component);
 	
-	    function Base() {
+	    function Base(props) {
 	      _classCallCheck(this, Base);
 	
-	      return _possibleConstructorReturn(this, (Base.__proto__ || Object.getPrototypeOf(Base)).apply(this, arguments));
+	      var _this = _possibleConstructorReturn(this, (Base.__proto__ || Object.getPrototypeOf(Base)).call(this, props));
+	
+	      _this.attachRef = function (target) {
+	        return _this.setState({ target: target });
+	      };
+	      _this.state = { show: false };
+	      _this.showTitle = _this.showTitle.bind(_this);
+	      _this.closeTitle = _this.closeTitle.bind(_this);
+	      return _this;
 	    }
 	
 	    _createClass(Base, [{
+	      key: 'showTitle',
+	      value: function showTitle() {
+	        this.setState({
+	          show: true
+	        });
+	        window.addEventListener('click', this.closeTitle);
+	      }
+	    }, {
+	      key: 'closeTitle',
+	      value: function closeTitle() {
+	        this.setState({
+	          show: false
+	        });
+	        window.removeEventListener('click', this.closeTitle);
+	      }
+	    }, {
+	      key: 'componentWillUnmount',
+	      value: function componentWillUnmount() {
+	        window.removeEventListener('click', this.closeTitle);
+	      }
+	    }, {
 	      key: 'render',
 	      value: function render() {
+	        var _state = this.state,
+	            show = _state.show,
+	            target = _state.target;
+	
 	        return _react2.default.createElement(
-	          _reactBootstrap.OverlayTrigger,
-	          {
-	            key: 'bottom',
-	            placement: 'bottom',
-	            overlay: _react2.default.createElement(
+	          _react2.default.Fragment,
+	          null,
+	          _react2.default.createElement(
+	            'div',
+	            {
+	              className: 'tool',
+	              ref: this.attachRef,
+	              onMouseOver: this.showTitle,
+	              onMouseLeave: this.closeTitle
+	            },
+	            _react2.default.createElement(Target, this.props)
+	          ),
+	          _react2.default.createElement(
+	            _reactBootstrap.Overlay,
+	            { target: target, show: show, placement: 'bottom' },
+	            _react2.default.createElement(
 	              _reactBootstrap.Tooltip,
 	              { className: 'tool-tooltip', id: 'tool-tooltip-' + this.props.type },
 	              this.props.title
 	            )
-	          },
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'tool' },
-	            _react2.default.createElement(Target, this.props)
 	          )
 	        );
 	      }
