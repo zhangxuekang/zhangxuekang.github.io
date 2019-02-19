@@ -1,0 +1,193 @@
+<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>跟随鼠标移动的文字</title>
+	<link rel="shortcut icon" href="../../favicon.ico" />
+</head>
+
+<style>
+	.s {
+		position: absolute;
+		color: #F00;
+		display: none;
+	}
+</style>
+
+<body>
+
+	<p id="txt">
+		<span class="s" id="s1">这</span>
+		<span class="s" id="s2">是</span>
+		<span class="s" id="s3">你</span>
+		<span class="s" id="s4">的</span>
+		<span class="s" id="s5">战</span>
+		<span class="s" id="s6">争</span>
+		<span class="s" id="s7">这</span>
+		<span class="s" id="s8">不</span>
+		<span class="s" id="s9">是</span>
+		<span class="s" id="s10">我</span>
+		<span class="s" id="s11">的</span>
+		<span class="s" id="s12">战</span>
+		<span class="s" id="s13">争</span>
+		<span class="s" id="s14">这</span>
+		<span class="s" id="s15">是</span>
+		<span class="s" id="s16">谁</span>
+		<span class="s" id="s17">的</span>
+		<span class="s" id="s18">战</span>
+		<span class="s" id="s19">争</span>
+	</p>
+
+</body>
+<script>
+	console.log("学生时代刚学js的代码, 看到后想死!");
+	var txt = document.getElementById("txt");
+
+	window.onmousemove = function(event) {
+
+
+		var s1 = document.getElementById("s1");
+		var s2 = document.getElementById("s2");
+		var s3 = document.getElementById("s3");
+		var s4 = document.getElementById("s4");
+		var s5 = document.getElementById("s5");
+		var s6 = document.getElementById("s6");
+		var s7 = document.getElementById("s7");
+		var s8 = document.getElementById("s8");
+		var s9 = document.getElementById("s9");
+		var s10 = document.getElementById("s10");
+		var s11 = document.getElementById("s11");
+		var s12 = document.getElementById("s12");
+		var s13 = document.getElementById("s13");
+		var s14 = document.getElementById("s14");
+		var s15 = document.getElementById("s15");
+		var s16 = document.getElementById("s16");
+		var s17 = document.getElementById("s17");
+		var s18 = document.getElementById("s18");
+		var s19 = document.getElementById("s19");
+
+		var x = event.clientX;
+		var y = event.clientY;
+		setTimeout(function() {
+			s1.style.display = "block";
+			s1.style.top = y + "px";
+			s1.style.left = x + "px"
+		}, 50);
+
+		setTimeout(function() {
+			s2.style.display = "block";
+			s2.style.top = y + "px";
+			s2.style.left = x + 23 + "px";
+		}, 100);
+
+		setTimeout(function() {
+			s3.style.display = "block";
+			s3.style.top = y + "px";
+			s3.style.left = x + 43 + "px";
+		}, 150);
+
+		setTimeout(function() {
+			s4.style.display = "block";
+			s4.style.top = y + "px";
+			s4.style.left = x + 63 + "px";
+		}, 200);
+
+		setTimeout(function() {
+			s5.style.display = "block";
+			s5.style.top = y + "px";
+			s5.style.left = x + 83 + "px";
+		}, 250);
+
+		setTimeout(function() {
+			s6.style.display = "block";
+			s6.style.top = y + "px";
+			s6.style.left = x + 103 + "px";
+		}, 300);
+
+		setTimeout(function() {
+			s7.style.display = "block";
+			s7.style.top = y + "px";
+			s7.style.left = x + 123 + "px";
+		}, 350);
+
+		setTimeout(function() {
+			s8.style.display = "block";
+			s8.style.top = y + "px";
+			s8.style.left = x + 143 + "px";
+		}, 400);
+
+		setTimeout(function() {
+			s9.style.display = "block";
+			s9.style.top = y + "px";
+			s9.style.left = x + 183 - 20 + "px";
+		}, 450);
+
+		setTimeout(function() {
+			s10.style.display = "block";
+			s10.style.top = y + "px";
+			s10.style.left = x + 203 - 20 + "px";
+		}, 500);
+
+		setTimeout(function() {
+			s11.style.display = "block";
+			s11.style.top = y + "px";
+			s11.style.left = x + 243 - 40 + "px";
+		}, 550);
+
+		setTimeout(function() {
+			s12.style.display = "block";
+			s12.style.top = y + "px";
+			s12.style.left = x + 263 - 40 + "px";
+		}, 600);
+
+		setTimeout(function() {
+			s13.style.display = "block";
+			s13.style.top = y + "px";
+			s13.style.left = x + 283 - 40 + "px";
+		}, 650);
+
+		setTimeout(function() {
+			s14.style.display = "block";
+			s14.style.top = y + "px";
+			s14.style.left = x + 303 - 40 + "px";
+		}, 700);
+
+		setTimeout(function() {
+			s15.style.display = "block";
+			s15.style.top = y + "px";
+			s15.style.left = x + 323 - 40 + "px";
+		}, 750);
+
+		setTimeout(function() {
+			s16.style.display = "block";
+			s16.style.top = y + "px";
+			s16.style.left = x + 343 - 40 + "px";
+		}, 800);
+
+		setTimeout(function() {
+			s17.style.display = "block";
+			s17.style.top = y + "px";
+			s17.style.left = x + 363 - 40 + "px";
+		}, 850);
+
+		setTimeout(function() {
+			s18.style.display = "block";
+			s18.style.top = y + "px";
+			s18.style.left = x + 383 - 40 + "px";
+		}, 900);
+
+		setTimeout(function() {
+			s19.style.display = "block";
+			s19.style.top = y + "px";
+			s19.style.left = x + 403 - 40 + "px";
+		}, 950);
+
+
+	}
+
+
+</script>
+
+</html>
