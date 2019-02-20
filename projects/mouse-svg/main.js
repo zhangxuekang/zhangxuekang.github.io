@@ -25,6 +25,7 @@
     window.addEventListener('mousemove', draw)
     window.addEventListener('mouseup', () => {
       points.length = 0
+      console.log($path.getAttribute('d'))
       window.removeEventListener('mousemove', draw)
     })
   })
