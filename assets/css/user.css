@@ -1,0 +1,18 @@
+input.disabled[type="submit"],
+input.disabled[type="reset"],
+input.disabled[type="button"],
+button.disabled,
+.button.disabled{
+  background-color: #747474 !important;
+  color: #cdcdcd !important;
+}
+
+input.disabled[type="submit"]:hover,
+input.disabled[type="reset"]:hover,
+input.disabled[type="button"]:hover,
+button.disabled:hover,
+.button.disabled:hover {
+  background-color: #747474 !important;
+  color: #cdcdcd !important;
+  cursor: not-allowed !important;
+}

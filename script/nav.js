@@ -21,7 +21,7 @@
       <li class="${page === 'article' ? 'current' : ''}">
         <a href="">文章</a>
         <ul>
-    			<li><a href="${path}article/example.html">example</a></li>
+    			<li><a href="${path}article/mouse-svg.html">js实现将一系列点拟合成平滑曲线</a></li>
     		</ul>
       </li>
     	<li class="${page === 'app' ? 'current' : ''}">

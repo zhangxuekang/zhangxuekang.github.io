@@ -2,9 +2,11 @@
 <html>
 
 <head>
-	<title>张学康的博客</title>
+	<title>js实现将一系列点拟合成平滑曲线</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<meta name ="keywords" content="js,svg,平滑曲线,javascrip,拟合">
+	<meta name="description" content="js实现将一系列点拟合成平滑曲线,用鼠标画svg曲线">
 	<link rel="stylesheet" href="../assets/css/main.css" />
 	<link rel="shortcut icon" href="../favicon.ico" />
 </head>
@@ -25,11 +27,11 @@
 					<div class="col-4 col-12-narrower">
 						<div id="sidebar">
 
-							<!-- Sidebar -->
-
 							<section>
 								<h3>简介</h3>
-								<p>这是文章简介</p>
+								<p>
+									js实现，将一系列点，拟合成平滑曲线。将鼠标移动轨迹转化为svg路径数据。
+								</p>
 								<footer>
 									<a href="#" class="button">继续阅读</a>
 								</footer>
@@ -38,12 +40,11 @@
 							<section>
 								<h3>相关链接</h3>
 								<ul class="links">
-									<li><a href="#">1111111</a></li>
-									<li><a href="#">2222222</a></li>
-									<li><a href="#">3333333</a></li>
+									<li><a href="https://wenku.baidu.com/view/c790f8d46bec0975f565e211.html">贝塞尔曲线控制点确定的方法（百度文库）</a></li>
+									<li><a href="../app/mouse-svg/index.html">demo</a></li>
 								</ul>
 								<footer>
-									<a href="#" class="button">更多</a>
+									<a href="#" class="button disabled">更多</a>
 								</footer>
 							</section>
 
@@ -52,22 +53,50 @@
 					<div class="col-8  col-12-narrower imp-narrower">
 						<div id="content">
 
-							<!-- Content -->
-
 							<article>
 								<header>
-									<h2>标题</h2>
-									<p>副标题</p>
+									<h2>js实现将一系列点拟合成平滑曲线</h2>
+									<p>用鼠标画svg曲线，来自一次动画项目的探索</p>
 								</header>
-
-								<span class="image featured"><img src="../images/banner.jpg" alt="" /></span>
-
-								<p>文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本</p>
-
-								<h3>文本文本文本文本</h3>
-								<p>文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本</p>
-
-								<p>文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本</p>
+								<span class="image featured"><img src="../images/article/svg.png" alt="三次贝塞尔曲线" /></span>
+								<h3>引出问题</h3>
+								<p>
+									业务上遇到了这样的问题，在浏览器中，使元素沿着用户画出的路径移动。
+									因为让元素沿着svg路径移动已经实现了，所以要做的是用鼠标画出路径。
+								</p>
+								<p>
+									鼠标方法只能获取鼠标在页面中的实时坐标，是离散的坐标点，如何将这些坐标点转化成平滑的路径是问题的关键。
+								</p>
+								<h3>思考过程</h3>
+								<p>
+									svg的三次贝塞尔曲线需要定义一个点和两个控制点，所以用C命令创建三次贝塞尔曲线，需要设置三组坐标参数(c dx1 dy1, dx2 dy2, dx dy)。
+									<a href="https://developer.mozilla.org/zh-CN/docs/Web/SVG/Tutorial/Paths#Curve_commands">这里的最后一个坐标(dx,
+										dy)表示的是曲线的终点，另外两个坐标是控制点，(dx1, dy1)是起点的控制点，(dx2, dy2)是终点的控制点。</a>
+									终点的坐标点好说，也就是获取的鼠标位置点，难的是如何得到两个控制点。
+								</p>
+								<p>
+									网上搜索解决办法，在百度文库上发现了一篇文章。
+									<span class="image featured" style="border: 1px solid black"><a
+											href="https://wenku.baidu.com/view/c790f8d46bec0975f565e211.html"><img
+												src="../images/article/control-point.png" alt="三次贝塞尔曲线" /></a></span>
+									现在来尝试下用这个方法转化坐标。
+								</p>
+								<h3>设计思路</h3>
+								<p>
+									假设获取的一系列鼠标坐标保存在数组mouse[]中。
+									mouse = [x1, y1, x2, y2, x3, y3, x4, y4, x5, y5, x6, y6, x7, y7, ...];
+									以(x3, y3)点为例。<br />
+									后控制点计算：<br /> dx1 = x3 + a(x4 - x2); <br />dy1 = y3 + a(y4 - y2);<br />
+									前控制点计算：<br /> dx2 = x4 - a(x5 - x3); <br />dy2 = y4 - a(y5 - y3);<br />
+									（a为系数，可以尝试不同系数，观察结果）<br />
+									那么依次求出每对点的控制点，就能连成一条平滑的曲线了。
+									开始的一对点作为起点不用求，第二对和最后一对点作为计算点，不做为记录点。
+								</p>
+								<h3>撸代码</h3>
+								<span class="image featured"><img src="../images/article/svg-code.png" alt="code" /></span>
+								<p>
+									调用函数时候传入参数，控制计算系数，系数为1/6*k。将函数返回的结果赋给path标签的d属性，就可以画出svg轨迹。具体demo<a href="../app/mouse-svg/index.html">看这里</a>
+								</p>
 							</article>
 
 						</div>
@@ -76,7 +105,6 @@
 			</div>
 		</section>
 
-		<!-- Footer -->
 		<div id="footer">
 			<!-- <div class="container">
 				<div class="row">
@@ -149,7 +177,6 @@
 
 	</div>
 
-	<!-- Scripts -->
 	<script src="../script/nav.js?page=article&deep=1"></script>
 	<script src="../assets/js/jquery.min.js"></script>
 	<script src="../assets/js/jquery.dropotron.min.js"></script>
