@@ -57,5 +57,35 @@
 			target: $body,
 			visibleClass: 'navPanel-visible'
 		});
-	
+
+	let z = 2;
+	$('#banner').on('click', function(e) {
+		const mx = e.pageX;
+		const my = e.pageY;
+		// 获取banner位置
+		const rects = document.querySelector('#banner').getBoundingClientRect();
+		const { left, top } = rects;
+		z = z + 1;
+		_wave(mx - left, my - top, z);
+		
+	});
+
+	function _wave(i, j, k) {
+		$('#banner').prepend(
+			'<div class="wave-position water' + k + '" style="z-index:' + k + ';top:' + j + 'px;left:' + i + 'px;">' +
+			'<div class="wave-body">' +
+			'<div class="wave wave5"></div>' +
+			'<div class="wave wave4"></div>' +
+			'<div class="wave wave3"></div>' +
+			'<div class="wave wave2"></div>' +
+			'<div class="wave wave1"></div>' +
+			'<div class="wave wave0"></div>' +
+			'</div>' +
+			'</div>'
+		);
+		setTimeout(function() {
+			$('.water' + k).remove();
+		}, 2000);
+	}
+
 })(jQuery);
