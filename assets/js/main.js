@@ -60,6 +60,9 @@
 
 	let z = 2;
 	$('#banner').on('click', function(e) {
+		if ($(document).scrollTop() > 5) {
+			return
+		}
 		const mx = e.pageX;
 		const my = e.pageY;
 		// 获取banner位置

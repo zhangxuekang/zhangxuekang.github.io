@@ -2653,12 +2653,14 @@ input, select, textarea {
 
 	#banner {
 		background-image: url("../../images/wave1.jpg");
-		background-position: center center;
-		background-size: cover;
+		/* background-size: cover; */
 		height: 28em;
 		text-align: center;
 		position: relative;
 		overflow: hidden;
+		background-attachment:fixed;
+    background-position:center center; 
+    background-size:auto 100%;
 	}
 
 		#banner header {
