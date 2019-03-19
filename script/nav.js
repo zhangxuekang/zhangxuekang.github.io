@@ -36,7 +36,7 @@
     		<a href="#">小游戏</a>
     		<ul>
     			<li><a href="http://zhangxuekang.com/mouse-show/index.html">跟随鼠标移动的文字</a></li>
-    			<li><a href="${path}game/snake/index.html">贪吃蛇</a></li>
+    			<li><a href="https://zhangxuekang.com/snake/index.html">贪吃蛇</a></li>
     		</ul>
     	</li>
     </ul>
