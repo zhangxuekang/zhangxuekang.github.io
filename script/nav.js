@@ -28,7 +28,7 @@
     		<a href="#">项目</a>
     		<ul>
     			<li><a href="https://zhangxuekang.com/rich-text/app/index.html">富文本</a></li>
-    			<li><a href="${path}app/web-calendar/index.html">万年历</a></li>
+    			<li><a href="https://zhangxuekang.com/web-calendar/index.html">万年历</a></li>
     			<li><a href="https://zhangxuekang.com/mouse-svg/index.html">鼠标轨迹转svg</a></li>
     		</ul>
     	</li>
