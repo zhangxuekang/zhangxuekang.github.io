@@ -1,7 +1,12 @@
 ---
 title: 当你在javascript中用"=="的时候, 你在比较什么?
 date: 2019-03-19 13:46:25
+categories:
+  - javascript
 tags:
+  - javascript
+  - ==
+  - 类型转换
 ---
 ## 类型转换  
 &nbsp;&nbsp;js中存在强制类型转换和隐式类型转换, 有意识地去调用转换方法或者构造函数去转换称为强制类型转换(implicit coercion), 无意识地转换(语言机制自发完成)称为隐式类型转换(explicit coercion).
