@@ -7,6 +7,7 @@ tags:
   - 富文本
   - draft.js
   - react
+header_image: https://source.unsplash.com/random
 ---
 [Draft.js](https://draftjs.org/)是一个构建富文本编辑器的React框架, 它不是一个富文本编辑器的组件库. draft.js提供构建编辑器的工具, 如何实现, 需要开发者自己去设计. 砖头和水泥都有了, 就差个程序员去盖房子了.  
 ## 特点  
