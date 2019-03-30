@@ -262,7 +262,8 @@ class RichEditor extends React.Component {
 }
 ```
 ## 总结  
-先附上自己写的初版富文本链接[demo](https://zhangxuekang.com/rich-text/index.html)  .
+先附上自己写的初版富文本链接[demo](https://zhangxuekang.com/rich-text/index.html).  
+![富文本编辑器](https://zhangxuekang.com/src/blog/draft-rich-text/text-editor.png)
 这就是Draft.js的基础应该用, 更多的功能例如超链接, 图片等有时间再撰文介绍. 打铁还需自身硬, 要想使用好Draft.js, 要需要自己去多研究多实践. 官网介绍挺全的(就是一些API很不友好). 附上官网的链接[https://draftjs.org/](https://draftjs.org/). 知乎也是用的Draft.js构建的富文本编辑器, 但是知乎也只用了Draft.js的皮毛, 足以支撑起一个普通的文章编辑和评论编辑器了. 如果你想要构建一个online word, 只能祝你好运. 
 附上两篇相关文章:   
 *[Draft.js 在知乎的实践](https://zhuanlan.zhihu.com/p/24951621)*  
