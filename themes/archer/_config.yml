@@ -30,9 +30,9 @@ social:
   rss: /atom.xml
 # friends
 friends:
-  friendA: 
-  friendB: 
-  friendC: 
+  # friendA: 
+  # friendB: 
+  # friendC: 
 about:
   enable: true
   image: '/intro/about-bg.jpg'
