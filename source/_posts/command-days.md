@@ -46,4 +46,10 @@ git rm -r --cached .
 ```  
 将所有文件从版本库里移除, -r表示递归, 深入文件内部.  
 之后再运行`git add .`和`git commit`后, 新的.gitignore规则就会生效.  
+* 2019-04-13
+```shell
+history
+```  
+显示终端中运行过的命令  
+
 
