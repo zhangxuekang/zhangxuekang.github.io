@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zhangxuekang.com/"/>
-  <updated>2019-04-07T12:27:47.133Z</updated>
+  <updated>2019-04-13T01:57:50.350Z</updated>
   <id>https://zhangxuekang.com/</id>
   
   <author>
@@ -18,10 +18,10 @@
   
   <entry>
     <title>个人项目集合</title>
-    <link href="https://zhangxuekang.com/2100/01/01/projects/"/>
-    <id>https://zhangxuekang.com/2100/01/01/projects/</id>
-    <published>2099-12-31T16:00:00.000Z</published>
-    <updated>2019-04-07T12:27:47.133Z</updated>
+    <link href="https://zhangxuekang.com/2100/01/02/projects/"/>
+    <id>https://zhangxuekang.com/2100/01/02/projects/</id>
+    <published>2100-01-01T16:00:00.000Z</published>
+    <updated>2019-04-13T01:57:50.350Z</updated>
     
     <content type="html"><![CDATA[<h1 id="游戏"><a href="#游戏" class="headerlink" title="游戏"></a>游戏</h1><ul><li><a href="https://zhangxuekang.com/snake/index.html">贪吃蛇</a></li></ul><h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><ul><li><a href="https://zhangxuekang.com/rich-text/index.html">draft.js富文本编辑器</a></li><li><a href="https://zhangxuekang.com/web-calendar/index.html">localStorage日历</a></li><li><a href="https://zhangxuekang.com/mouse-show/index.html">跟随鼠标移动的文字特效</a></li><li><a href="https://zhangxuekang.com/mouse-svg/index.html">鼠标轨迹转svg</a></li></ul>]]></content>
     
@@ -37,6 +37,37 @@
     
       <category term="项目" scheme="https://zhangxuekang.com/categories/%E9%A1%B9%E7%9B%AE/"/>
     
+    
+  </entry>
+  
+  <entry>
+    <title>每天一个命令行</title>
+    <link href="https://zhangxuekang.com/2100/01/01/command-days/"/>
+    <id>https://zhangxuekang.com/2100/01/01/command-days/</id>
+    <published>2099-12-31T16:00:00.000Z</published>
+    <updated>2019-04-13T02:10:00.703Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li><p>2019-04-08</p><pre><code class="shell">npm list [-g] --depth 0</code></pre><p>查看[全局]安装的npm包, depth 0表示查看最外层的包, depth 1展开一层看看这些模块各自又依赖了哪些模块, 以此类推.  </p></li><li><p>2019-04-09</p><pre><code class="shell">git branch -d &lt;branch-name&gt;</code></pre><p>删除本地分支  </p><pre><code class="shell">git branch -b &lt;branch-name&gt;</code></pre><p>新建本地分支  </p></li><li><p>2019-04-10</p><pre><code class="shell">echo "xxx" &gt; file-name.txt</code></pre><p>将内容”xxx”写入file-name.txt文件中, 覆盖写入.  </p><pre><code class="shell">echo "xxx" &gt;&gt; file-name.txt</code></pre><p>将内容”xxx”写入file-name.txt文件中, 追加写入, echo自动加换行.  </p></li><li><p>2019-04-11 </p><pre><code class="shell">git checkout &lt;origin-branch-name&gt;</code></pre><p>基于远端分支在本地新建同名分支  </p></li><li><p>2019-04-12</p><pre><code class="shell">git rm -r --cached .</code></pre><p>将所有文件从版本库里移除, -r表示递归, 深入文件内部.<br>之后再运行<code>git add .</code>和<code>git commit</code>后, 新的.gitignore规则就会生效.  </p></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;ul&gt;
+&lt;li&gt;&lt;p&gt;2019-04-08&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;shell&quot;&gt;npm list [-g] --depth 0
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;查看[全局]安装的npm包, depth 0表示查看最外层的包, depth 1展开一层看看这
+      
+    
+    </summary>
+    
+      <category term="common" scheme="https://zhangxuekang.com/categories/common/"/>
+    
+    
+      <category term="命令" scheme="https://zhangxuekang.com/tags/%E5%91%BD%E4%BB%A4/"/>
+    
+      <category term="终端" scheme="https://zhangxuekang.com/tags/%E7%BB%88%E7%AB%AF/"/>
     
   </entry>
   
