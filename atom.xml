@@ -45,19 +45,15 @@
     <link href="https://zhangxuekang.com/2100/01/01/command-days/"/>
     <id>https://zhangxuekang.com/2100/01/01/command-days/</id>
     <published>2099-12-31T16:00:00.000Z</published>
-    <updated>2019-04-15T12:28:04.106Z</updated>
+    <updated>2019-04-15T12:33:31.000Z</updated>
     
-    <content type="html"><![CDATA[<ul><li><p>2019-04-08</p><pre><code class="shell">npm list [-g] --depth 0</code></pre><p>查看[全局]安装的npm包，depth 0表示查看最外层的包，depth 1展开一层看看这些模块各自又依赖了哪些模块，以此类推。</p></li><li><p>2019-04-09</p><pre><code class="shell">git branch -d &lt;branch-name&gt;</code></pre><p>删除本地分支  </p><pre><code class="shell">git branch -b &lt;branch-name&gt;</code></pre><p>新建本地分支  </p></li><li><p>2019-04-10</p><pre><code class="shell">echo "xxx" &gt; file-name.txt</code></pre><p>将内容”xxx”写入file-name.txt文件中，覆盖写入。  </p><pre><code class="shell">echo "xxx" &gt;&gt; file-name.txt</code></pre><p>将内容”xxx”写入file-name.txt文件中，追加写入，echo自动加换行。  </p></li><li><p>2019-04-11 </p><pre><code class="shell">git checkout &lt;origin-branch-name&gt;</code></pre><p>基于远端分支在本地新建同名分支。  </p></li><li><p>2019-04-12</p><pre><code class="shell">git rm -r --cached .</code></pre><p>将所有文件从版本库里移除，-r表示递归，深入文件内部。<br>之后再运行<code>git add .</code>和<code>git commit</code>后，新的.gitignore规则就会生效。  </p></li><li>2019-04-13<pre><code class="shell">history</code></pre>显示终端中运行过的命令。  </li><li>2019-04-15  <pre><code class="shell">touch file-name</code></pre>touch命令用于修改文件或者目录的时间属性，包括存取时间和更改时间，若文件不存在，系统会建立一个新的文件。<br>也就是说该命令将文件的最后更改时间设置为系统当前时间。  </li></ul>]]></content>
+    <content type="html"><![CDATA[<h3 id="2019-04-08"><a href="#2019-04-08" class="headerlink" title="2019-04-08"></a>2019-04-08</h3><pre><code class="shell">npm list [-g] --depth 0</code></pre><p>查看[全局]安装的npm包，depth 0表示查看最外层的包，depth 1展开一层看看这些模块各自又依赖了哪些模块，以此类推。</p><h3 id="2019-04-09"><a href="#2019-04-09" class="headerlink" title="2019-04-09"></a>2019-04-09</h3><pre><code class="shell">git branch -d &lt;branch-name&gt;</code></pre><p>删除本地分支  </p><pre><code class="shell">git branch -b &lt;branch-name&gt;</code></pre><p>新建本地分支  </p><h3 id="2019-04-10"><a href="#2019-04-10" class="headerlink" title="2019-04-10"></a>2019-04-10</h3><pre><code class="shell">echo "xxx" &gt; file-name.txt</code></pre><p>将内容”xxx”写入file-name.txt文件中，覆盖写入。  </p><pre><code class="shell">echo "xxx" &gt;&gt; file-name.txt</code></pre><p>将内容”xxx”写入file-name.txt文件中，追加写入，echo自动加换行。  </p><h3 id="2019-04-11"><a href="#2019-04-11" class="headerlink" title="2019-04-11"></a>2019-04-11</h3><pre><code class="shell">git checkout &lt;origin-branch-name&gt;</code></pre><p>基于远端分支在本地新建同名分支。  </p><h3 id="2019-04-12"><a href="#2019-04-12" class="headerlink" title="2019-04-12"></a>2019-04-12</h3><pre><code class="shell">git rm -r --cached .</code></pre><p>将所有文件从版本库里移除，-r表示递归，深入文件内部。<br>之后再运行<code>git add .</code>和<code>git commit</code>后，新的.gitignore规则就会生效。  </p><h3 id="2019-04-13"><a href="#2019-04-13" class="headerlink" title="2019-04-13"></a>2019-04-13</h3><pre><code class="shell">history</code></pre><p>显示终端中运行过的命令。  </p><h3 id="2019-04-15"><a href="#2019-04-15" class="headerlink" title="2019-04-15"></a>2019-04-15</h3><pre><code class="shell">touch file-name</code></pre><p>touch命令用于修改文件或者目录的时间属性，包括存取时间和更改时间，若文件不存在，系统会建立一个新的文件。<br>也就是说该命令将文件的最后更改时间设置为系统当前时间。  </p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;2019-04-08&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;shell&quot;&gt;npm list [-g] --depth 0
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;查看[全局]安装的npm包，depth 0表示查看最外层的包，depth 1展开一层看看这些模
+        &lt;h3 id=&quot;2019-04-08&quot;&gt;&lt;a href=&quot;#2019-04-08&quot; class=&quot;headerlink&quot; title=&quot;2019-04-08&quot;&gt;&lt;/a&gt;2019-04-08&lt;/h3&gt;&lt;pre&gt;&lt;code class=&quot;shell&quot;&gt;npm list [-g] --
       
     
     </summary>
