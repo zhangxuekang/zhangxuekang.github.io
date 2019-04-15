@@ -404,10 +404,44 @@ height:50vh;
             <main class="main post-page">
     <article class="article-entry">
         <ul>
-<li>2019-04-08<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">npm list [-g] --depth 0</span><br><span class="line">```  </span><br><span class="line">查看[全局]安装的npm包，depth 0表示查看最外层的包，depth 1展开一层看看这些模块各自又依赖了哪些模块，以此类推。</span><br><span class="line"></span><br><span class="line">* 2019-04-09</span><br><span class="line">```shell</span><br><span class="line">git branch -d &lt;branch-name&gt;</span><br><span class="line">```  </span><br><span class="line">删除本地分支  </span><br><span class="line">```shell</span><br><span class="line">git branch -b &lt;branch-name&gt;</span><br><span class="line">```  </span><br><span class="line">新建本地分支  </span><br><span class="line"></span><br><span class="line">* 2019-04-10</span><br><span class="line">```shell</span><br><span class="line">echo "xxx" &gt; file-name.txt</span><br><span class="line">```  </span><br><span class="line">将内容"xxx"写入file-name.txt文件中，覆盖写入。  </span><br><span class="line">```shell</span><br><span class="line">echo "xxx" &gt;&gt; file-name.txt</span><br><span class="line">```  </span><br><span class="line">将内容"xxx"写入file-name.txt文件中，追加写入，echo自动加换行。  </span><br><span class="line"></span><br><span class="line">* 2019-04-11 </span><br><span class="line">```shell</span><br><span class="line">git checkout &lt;origin-branch-name&gt;</span><br><span class="line">```  </span><br><span class="line">基于远端分支在本地新建同名分支。  </span><br><span class="line"></span><br><span class="line">* 2019-04-12</span><br><span class="line">```shell</span><br><span class="line">git rm -r --cached .</span><br><span class="line">```  </span><br><span class="line">将所有文件从版本库里移除，-r表示递归，深入文件内部。  </span><br><span class="line">之后再运行`git add .`和`git commit`后，新的.gitignore规则就会生效。  </span><br><span class="line">* 2019-04-13</span><br><span class="line">```shell</span><br><span class="line">history</span><br><span class="line">```  </span><br><span class="line">显示终端中运行过的命令。  </span><br><span class="line">* 2019-04-15  </span><br><span class="line">```shell</span><br><span class="line">touch file-name</span><br></pre></td></tr></table></figure>
+<li><p>2019-04-08</p>
+<pre><code class="shell">npm list [-g] --depth 0
+</code></pre>
+<p>查看[全局]安装的npm包，depth 0表示查看最外层的包，depth 1展开一层看看这些模块各自又依赖了哪些模块，以此类推。</p>
 </li>
+<li><p>2019-04-09</p>
+<pre><code class="shell">git branch -d &lt;branch-name&gt;
+</code></pre>
+<p>删除本地分支  </p>
+<pre><code class="shell">git branch -b &lt;branch-name&gt;
+</code></pre>
+<p>新建本地分支  </p>
+</li>
+<li><p>2019-04-10</p>
+<pre><code class="shell">echo "xxx" &gt; file-name.txt
+</code></pre>
+<p>将内容”xxx”写入file-name.txt文件中，覆盖写入。  </p>
+<pre><code class="shell">echo "xxx" &gt;&gt; file-name.txt
+</code></pre>
+<p>将内容”xxx”写入file-name.txt文件中，追加写入，echo自动加换行。  </p>
+</li>
+<li><p>2019-04-11 </p>
+<pre><code class="shell">git checkout &lt;origin-branch-name&gt;
+</code></pre>
+<p>基于远端分支在本地新建同名分支。  </p>
+</li>
+<li><p>2019-04-12</p>
+<pre><code class="shell">git rm -r --cached .
+</code></pre>
+<p>将所有文件从版本库里移除，-r表示递归，深入文件内部。<br>之后再运行<code>git add .</code>和<code>git commit</code>后，新的.gitignore规则就会生效。  </p>
+</li>
+<li>2019-04-13<pre><code class="shell">history
+</code></pre>
+显示终端中运行过的命令。  </li>
+<li>2019-04-15  <pre><code class="shell">touch file-name
+</code></pre>
+touch命令用于修改文件或者目录的时间属性，包括存取时间和更改时间，若文件不存在，系统会建立一个新的文件。<br>也就是说该命令将文件的最后更改时间设置为系统当前时间。  </li>
 </ul>
-<p>touch命令用于修改文件或者目录的时间属性，包括存取时间和更改时间，若文件不存在，系统会建立一个新的文件。<br>也就是说该命令将文件的最后更改时间设置为系统当前时间。  </p>
 
     </article>
     <!-- license  -->
@@ -416,7 +450,7 @@ height:50vh;
             <!-- <p>原文作者：<a href="https://zhangxuekang.com">zhangxk</a>  -->
             <!-- <p>原文链接：<a href="https://zhangxuekang.com/2100/01/01/command-days/">https://zhangxuekang.com/2100/01/01/command-days/</a>  -->
             <!-- <p>发表日期：<a href="https://zhangxuekang.com/2100/01/01/command-days/">January 1st 2100, 12:00:00 am</a>  -->
-            <!-- <p>更新日期：<a href="https://zhangxuekang.com/2100/01/01/command-days/">April 15th 2019, 8:25:19 pm</a>  -->
+            <!-- <p>更新日期：<a href="https://zhangxuekang.com/2100/01/01/command-days/">April 15th 2019, 8:28:04 pm</a>  -->
             <p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
