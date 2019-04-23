@@ -62,5 +62,10 @@ touch命令用于修改文件或者目录的时间属性，包括存取时间和
 kill -9 PID
 ```  
 结束指定PID的进程，mac可以打开活动监视器查看进程PID。  
+### 2019-04-23
+```shell
+git merge --squash another
+```  
+将another分支上的多个commit合并成一个，放在当前分支上，原来的commit历史则没有拿过来，需要填写一个commite记录。  
 
 
