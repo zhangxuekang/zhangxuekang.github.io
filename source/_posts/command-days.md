@@ -67,5 +67,10 @@ kill -9 PID
 git merge --squash another
 ```  
 将another分支上的多个commit合并成一个，放在当前分支上，原来的commit历史则没有拿过来，需要填写一个commite记录。  
+### 2019-05-15
+```shell
+ls -l
+```  
+列出文件夹内的文件信息.  
 
 
