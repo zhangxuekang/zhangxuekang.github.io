@@ -71,6 +71,11 @@ git merge --squash another
 ```shell
 ls -l
 ```  
-列出文件夹内的文件信息.  
+列出文件夹内的文件信息。 
+### 2019-05-19
+```shell
+pwd
+```  
+显示当前目录路径。
 
 
