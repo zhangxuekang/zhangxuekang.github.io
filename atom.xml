@@ -68,6 +68,30 @@
   </entry>
   
   <entry>
+    <title>踩坑之路</title>
+    <link href="https://zhangxuekang.com/2019/05/22/trap/"/>
+    <id>https://zhangxuekang.com/2019/05/22/trap/</id>
+    <published>2019-05-22T02:20:21.000Z</published>
+    <updated>2019-05-22T02:37:44.179Z</updated>
+    
+    <content type="html"><![CDATA[<ol><li><h3 id="border-dashed在部分机型-ios-Android-上不显示"><a href="#border-dashed在部分机型-ios-Android-上不显示" class="headerlink" title="border dashed在部分机型(ios/Android)上不显示"></a>border dashed在部分机型(ios/Android)上不显示</h3><p>解决方法: 添加属性border-radius, 值设置为0.5或者1都行, 实际中设置了0.1, 样式影响很小. 附上大佬们在github上的讨论:<br><a href="https://github.com/facebook/react-native/issues/12817" target="_blank" rel="noopener"><em>borderStyle ‘dashed’ didn’t work when borderBottomWidth set</em></a>  </p></li><li><h3 id="元素设置transform-scale后的定位问题"><a href="#元素设置transform-scale后的定位问题" class="headerlink" title="元素设置transform scale后的定位问题"></a>元素设置transform scale后的定位问题</h3><p>scale缩放相当于使用放大镜看局部的元素, 眼睛看到元素变大或者缩小了, 但是他实际的大小和占位是不变的, 不会影响周围元素的排布. 如果元素是绝对定位的, left和top是根据元素本来的大小尺寸定位来计算的, 和放大后眼睛看到的’虚像’无关, 但是鼠标点点击区域和眼睛看到的区域值一致的.</p></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;ol&gt;
+&lt;li&gt;&lt;h3 id=&quot;border-dashed在部分机型-ios-Android-上不显示&quot;&gt;&lt;a href=&quot;#border-dashed在部分机型-ios-Android-上不显示&quot; class=&quot;headerlink&quot; title=&quot;border dashed
+      
+    
+    </summary>
+    
+      <category term="common" scheme="https://zhangxuekang.com/categories/common/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>使用draft.js构建富文本编辑器</title>
     <link href="https://zhangxuekang.com/2019/03/30/draft-rich-text/"/>
     <id>https://zhangxuekang.com/2019/03/30/draft-rich-text/</id>

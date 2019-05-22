@@ -22,7 +22,7 @@
     <meta name="description" content="zhangxk的前端博客 Stay hungry Stay foolish">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>zhangxk blog</title>
+    <title>踩坑之路 · zhangxk blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -203,12 +203,23 @@
 </head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/">zhangxk&#39;s blog</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">踩坑之路</a>
+            </div>
+    </div>
     
     <a class="home-link" href="/">zhangxk's blog</a>
 </header>
@@ -220,24 +231,68 @@
 
 
 
+
+height:50vh;
 ">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(https://source.unsplash.com/random)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            踩坑之路
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">197</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/05/22</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -338,171 +393,59 @@
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/05/22/trap/">
-            
-                <span>踩坑之路</span>
-        </a>
-        <div class="abstract-content">
-            
-border dashed在部分机型(ios/Android)上不显示解决方法: 添加属性border-radius, 值设置为0.5或者1都行, 实际中设置了0.1, 样式影响很小. 附上大佬们在github上的讨论:borderStyle ‘dashed’ didn’t work when borderBottomWidth set  
+            <main class="main post-page">
+    <article class="article-entry">
+        <ol>
+<li><h3 id="border-dashed在部分机型-ios-Android-上不显示"><a href="#border-dashed在部分机型-ios-Android-上不显示" class="headerlink" title="border dashed在部分机型(ios/Android)上不显示"></a>border dashed在部分机型(ios/Android)上不显示</h3><p>解决方法: 添加属性border-radius, 值设置为0.5或者1都行, 实际中设置了0.1, 样式影响很小. 附上大佬们在github上的讨论:<br><a href="https://github.com/facebook/react-native/issues/12817" target="_blank" rel="noopener"><em>borderStyle ‘dashed’ didn’t work when borderBottomWidth set</em></a>  </p>
+</li>
+<li><h3 id="元素设置transform-scale后的定位问题"><a href="#元素设置transform-scale后的定位问题" class="headerlink" title="元素设置transform scale后的定位问题"></a>元素设置transform scale后的定位问题</h3><p>scale缩放相当于使用放大镜看局部的元素, 眼睛看到元素变大或者缩小了, 但是他实际的大小和占位是不变的, 不会影响周围元素的排布. 如果元素是绝对定位的, left和top是根据元素本来的大小尺寸定位来计算的, 和放大后眼睛看到的’虚像’无关, 但是鼠标点点击区域和眼睛看到的区域值一致的.</p>
+</li>
+</ol>
 
-元素设置transform scale后的定位问题scale缩放相当于使用放大镜看局部的元素, 眼睛看到元素变大或者缩小了, 但是他实际的大小和占位是不变的, 不会影响周围元素的排布. 如果元素是绝对定位的, left和top是根据元素本来的大小...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/22</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
     </article>
+    <!-- license  -->
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/03/30/draft-rich-text/">
-            
-                <span>使用draft.js构建富文本编辑器</span>
-        </a>
-        <div class="abstract-content">
-            Draft.js是一个构建富文本编辑器的React框架, 它不是一个富文本编辑器的组件库. draft.js提供构建编辑器的工具, 如何实现, 需要开发者自己去设计. 砖头和水泥都有了, 就差个程序员去盖房子了.  
-特点
-大部分编辑器保存的富文本数据都是html, 数据不够结构化, 查询修改数据很不容易. 而Draft.js提供结构化的数据, 表现能力更加强大.  
-实现富文本功能的过程中你会发现, Draft.js没有直接操作dom. 数据和渲染的完全分离, 使开发者只需要关注数据层.  
-在Draft.js中, 所有的事情都是开发者自己去定制的, 灵活性高, 可扩展性强.  
-不管...
+        <div class="license-wrapper">
+            <!-- <p>原文作者：<a href="https://zhangxuekang.com">zhangxk</a>  -->
+            <!-- <p>原文链接：<a href="https://zhangxuekang.com/2019/05/22/trap/">https://zhangxuekang.com/2019/05/22/trap/</a>  -->
+            <!-- <p>发表日期：<a href="https://zhangxuekang.com/2019/05/22/trap/">May 22nd 2019, 10:20:21 am</a>  -->
+            <!-- <p>更新日期：<a href="https://zhangxuekang.com/2019/05/22/trap/">May 22nd 2019, 10:37:44 am</a>  -->
+            <p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/30</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="富文本">富文本</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="draft.js">draft.js</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="react">react</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/03/30/mouse-svg/">
-            
-                <span>记录鼠标轨迹, 生成svg路径</span>
-        </a>
-        <div class="abstract-content">
-            &emsp;&emsp;业务上遇到了这样的问题, 在浏览器中, 使元素沿着用户画出的路径移动. 因为让元素沿着svg路径移动已经实现了, 所以需要做的是用鼠标画出路径. 鼠标方法只能获取鼠标在页面中的实时坐标, 是离散的坐标点, 如何将这些坐标点转化成平滑的路径是问题的关键.&emsp;&emsp;svg的三次贝塞尔曲线需要定义一个点和两个控制点, 所以用C命令创建三次贝塞尔曲线, 需要设置三组坐标参数(c dx1 dy1, dx2 dy2, dx dy). 这里的最后一个坐标(dx, dy)表示的是曲线的终点, 另外两个坐标是控制点, (dx1, dy1)是起点的控制点, (dx2, ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/30</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="javascript">javascript</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="鼠标">鼠标</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="svg">svg</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/03/22/mouse-string/">
-            
-                <span>js简单实现的鼠标跟随效果</span>
-        </a>
-        <div class="abstract-content">
-            &emsp;&emsp;记得早年风靡装饰非主流QQ空间, 各种克隆空间的网站大行其道. 如果复制了某个狂拽酷炫的空间(必须有DJ背景音乐, 必须有轮播的视频图片, 配色必须黑底花字, 最好有鼠标跟随特效…)那么感觉自己就像是这条街最帅的仔了. 现在回忆起往事, 感慨万千, 时光一去不复返, 如果能穿越回去, 我一定扇死自己:)&emsp;&emsp;虽然回忆起来就辣眼睛, 但是鼠标跟随特效还是很有应用前途的(强迫让自己相信). 曾经见过一个我认为最牛逼的纯css实现方案, 将页面铺满小div元素, 根据窗口绝对定位, 每个div都有:hover反应, 只要你的div足够小足够多, 看起来...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/22</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="javascript">javascript</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="鼠标跟随">鼠标跟随</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/03/19/coercion/">
-            
-                <span>当你在javascript中用&#34;==&#34;的时候, 你在比较什么?</span>
-        </a>
-        <div class="abstract-content">
-            类型转换&nbsp;&nbsp;js中存在强制类型转换和隐式类型转换, 有意识地去调用转换方法或者构造函数去转换称为强制类型转换(implicit coercion), 无意识地转换(语言机制自发完成)称为隐式类型转换(explicit coercion).123456789101112131415const a = 42const b = a + "" // implicit coercionconst c = String( a ) // explicit coercion```  这里稍后会讨论的"=="问题, 涉及到的也是隐式类型转换.  转换的目标只能是string, numb...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/19</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="javascript">javascript</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="==">==</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="类型转换">类型转换</a>
-    
-</div>
-            
-        </div>
-    </article>
     
     <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href="/2100/01/01/command-days/" title="每天一个命令行">
+                    <div class="nextTitle">每天一个命令行</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2019/03/30/draft-rich-text/" title="使用draft.js构建富文本编辑器">
+                    <div class="prevTitle">使用draft.js构建富文本编辑器</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -580,6 +523,24 @@ border dashed在部分机型(ios/Android)上不显示解决方法: 添加属性b
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#border-dashed在部分机型-ios-Android-上不显示"><span class="toc-number">1.</span> <span class="toc-text">border dashed在部分机型(ios/Android)上不显示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#元素设置transform-scale后的定位问题"><span class="toc-number">2.</span> <span class="toc-text">元素设置transform scale后的定位问题</span></a></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -822,6 +783,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>
