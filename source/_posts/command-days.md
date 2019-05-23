@@ -46,36 +46,51 @@ git rm -r --cached .
 ```  
 将所有文件从版本库里移除，-r表示递归，深入文件内部。  
 之后再运行`git add .`和`git commit`后，新的.gitignore规则就会生效。  
+
 ### 2019-04-13
 ```shell
 history
 ```  
 显示终端中运行过的命令。  
+
 ### 2019-04-15  
 ```shell
 touch file-name
 ```  
 touch命令用于修改文件或者目录的时间属性，包括存取时间和更改时间，若文件不存在，系统会建立一个新的文件。  
 也就是说该命令将文件的最后更改时间设置为系统当前时间。  
+
 ### 2019-04-21  
 ```shell
 kill -9 PID
 ```  
 结束指定PID的进程，mac可以打开活动监视器查看进程PID。  
-### 2019-04-23
+
+### 2019-04-23  
 ```shell
 git merge --squash another
 ```  
 将another分支上的多个commit合并成一个，放在当前分支上，原来的commit历史则没有拿过来，需要填写一个commite记录。  
-### 2019-05-15
+### 2019-05-15  
 ```shell
 ls -l
 ```  
 列出文件夹内的文件信息。 
-### 2019-05-19
+
+### 2019-05-19  
 ```shell
 pwd
 ```  
-显示当前目录路径。
+显示当前目录路径。 
+
+### 2019-05-23  
+```shell
+git tag <tagname> [commit id]
+```  
+创建一个标签，默认为HEAD，可以指定一个commit id。   
+```shell
+git tag -a <tagname> -m "blablabla..."
+```  
+创建一个带有信息的标签。  
 
 
