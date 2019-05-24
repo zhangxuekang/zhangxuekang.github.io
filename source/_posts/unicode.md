@@ -21,7 +21,7 @@ H = Math.floor((c - 0x10000) / 0x400) + 0xD800
 L = (c - 0x10000) % 0x400 + 0xDC00
 ```  
 ## 4. javascript中的Unicode
-javascript采用Unicode字符集，支持的编码方式是UCS-2。UTF-16是UCS-2的超集，至于UCS-2是什么，请自行百度。在javascript中处理字符串时，可以看做是UTF-16编码。遇到4个字节的字符，String.prototype.length会得到2，不过在es6中增加了新的api处理4个字节字符的方法，这里就不展开介绍了。  
+javascript采用Unicode字符集，支持的编码方式是UCS-2。UTF-16是UCS-2的超集，至于UCS-2是什么，请自行百度。在javascript中处理字符串时，可以看做是UTF-16编码。遇到4个字节的字符，String.prototype.length会得到2，不过在es6中增加了新的api处理4个字节字符的方法，这里就不展开介绍了。js中的表示方法是'\u'+四位16进制数，例如'\u4f60'表示中文'你'，这是一个长度是1的字符。'\u004F\u030C'表示符号'Ǒ'，lendth长度是2。匹配辅助平面的字符的正则：/[\uD800-\uDBFF][\uDC00-\uDFFF]/，匹配到的字符length都是2。首先要将码点转化为高位和低位形式，再与正则比较判断。  
 ## 5. javascript中处理emoji  
 emoji实质上也是Unicode码，也可以在javascript中处理。大部分emoji是4个字节，由高位+低位两端编码组成，只要解析的时候不把高位和低位分开，就不会出现'乱码'的情况。但是有些emoji是由多个emoji连接而成，例如：
 ```
