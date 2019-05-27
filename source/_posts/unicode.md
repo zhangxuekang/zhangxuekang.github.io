@@ -16,17 +16,17 @@ header_image: https://source.unsplash.com/random
 >所以，当我们遇到两个字节，发现它的码点在U+D800到U+DBFF之间，就可以断定，紧跟在后面的两个字节的码点，应该在U+DC00到U+DFFF之间，这四个字节必须放在一起解读。  
 
 给一个辅助平面的码点，怎么转化成UTF-164字节形式呢？有一个公式可用：
-```
+```js
 H = Math.floor((c - 0x10000) / 0x400) + 0xD800
 L = (c - 0x10000) % 0x400 + 0xDC00
 ```  
-## 4. javascript中的Unicode
+## 4. javascript中的Unicode  
 javascript采用Unicode字符集，支持的编码方式是UCS-2。UTF-16是UCS-2的超集，至于UCS-2是什么，请自行百度。在javascript中处理字符串时，可以看做是UTF-16编码。遇到4个字节的字符，String.prototype.length会得到2，不过在es6中增加了新的api处理4个字节字符的方法，这里就不展开介绍了。js中的表示方法是'\u'+四位16进制数，例如'\u4f60'表示中文'你'，这是一个长度是1的字符。'\u004F\u030C'表示符号'Ǒ'，lendth长度是2。匹配辅助平面的字符的正则：/[\uD800-\uDBFF][\uDC00-\uDFFF]/，匹配到的字符length都是2。首先要将码点转化为高位和低位形式，再与正则比较判断。  
 ## 5. javascript中处理emoji  
-emoji实质上也是Unicode码，也可以在javascript中处理。大部分emoji是4个字节，由高位+低位两端编码组成，只要解析的时候不把高位和低位分开，就不会出现'乱码'的情况。但是有些emoji是由多个emoji连接而成，例如：
-```
+emoji实质上也是Unicode码，也可以在javascript中处理。大部分emoji是4个字节，由高位+低位两端编码组成，只要解析的时候不把高位和低位分开，就不会出现'乱码'的情况。但是有些emoji是由多个emoji连接而成，例如：  
+```js
 U+1F468：男人
 U+1F469：女人
 U+1F467：女孩
-```
+```  
 使用连接符号U+200D连接，U+1F468 U+200D U+1F469 U+200D U+1F467，就会显示一个新的emoji表情：家庭，但是如果系统不支持这种表示，还是会显示3个单独的表情。
