@@ -93,4 +93,17 @@ git tag -a <tagname> -m "blablabla..."
 ```  
 创建一个带有信息的标签。  
 
+### 2019-05-27  
+```shell
+git tag -d <tagname>
+```  
+在本地删除一个标签。
+```shell
+git push origin :refs/tags/<tagname>
+```  
+这样可以删除远程的标签（需要先在本地删除再删远程）。
+
+
+
+
 
