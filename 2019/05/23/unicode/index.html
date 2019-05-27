@@ -266,7 +266,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">953</span>阅读时长: <span class="post-count reading-time">3 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">957</span>阅读时长: <span class="post-count reading-time">3 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -397,7 +397,7 @@ height:50vh;
     <article class="article-entry">
         <h2 id="1-Unicode是什么？"><a href="#1-Unicode是什么？" class="headerlink" title="1. Unicode是什么？"></a>1. Unicode是什么？</h2><p>有一个想法，将全世界所有的字符号都包含在一个集合里边，任何机器支持这一个集合就行了，再也不会有乱码了。基于这个想法，Unicode码应运而生。它用数字编号来表示符号，到7.0版，已经有了109449个符号。一般用26进制表示，’U+4E49’表示字符’义’，’U+’是前缀，整体叫做<em>码点</em>。<br>集合分为几个区间，U+0000~U+FFFF是最常用的字符，称为<em>基本平面</em>，剩下的U+010000~U+10FFFF称为<em>辅助平面</em>。  </p>
 <h2 id="2-编码方式"><a href="#2-编码方式" class="headerlink" title="2. 编码方式"></a>2. 编码方式</h2><p>平常说的UTF-8，UTF-16就是说的码点的编码方式。UTF-32指无论是什么码点，一律使用4个字节表示，一共是8位16进制数，位数不足的，在前边补0，例如U+389D = 0x0000 389D。UTF-8字节数灵活，用1个字节能表示的用1个字节，用两个字节才能表示的，用两个字节，还可能是3个4个字节。同样的文本UTF-8占的存储空间比UTF32小多了。所以，网页编码大部分使用的是UTF-8。  </p>
-<h2 id="3-UTF-16"><a href="#3-UTF-16" class="headerlink" title="3. UTF-16"></a>3. UTF-16</h2><p>重点说一下UTF-16。UTF-16介于以上两者之间，规则也很简单，基本平面的字符占用2个字节，辅助平面的字节占用4个字节。因为常用的字符都在基本平面，所以UTF-16比UTF-32所占空间要小。当我们看到两个字节，如果前一个字节的范围是U+D800到U+DBFF，那么后一个字节一般在U+DC00到U+DFFF范围内，那么它就是一个4字节字符。但是U+D800到U+DBFF范围内的2个字节的字符怎么办？在基本平面里边U+D800~U+DBFF是一个空段，不对应任何字符（不知道是不是有意为之），所以用这段来表示4字节字符的前段，也叫高位，后边的U+DC00到U+DFFF叫低位。</p>
+<h2 id="3-UTF-16"><a href="#3-UTF-16" class="headerlink" title="3. UTF-16"></a>3. UTF-16</h2><p>重点说一下UTF-16。UTF-16介于以上两者之间，规则也很简单，基本平面的字符占用2个字节，辅助平面的字节占用4个字节。因为常用的字符都在基本平面，所以UTF-16比UTF-32所占空间要小。当我们看到4个字节，如果前两个字节码点的范围是U+D800到U+DBFF，那么后两个字节码点一般在U+DC00到U+DFFF范围内，那么它就是一个4字节字符。但是U+D800到U+DBFF范围内的2个字节的字符怎么办？在基本平面里边U+D800~U+DBFF是一个空段，不对应任何字符（不知道是不是有意为之），所以用这段来表示4字节字符的前段，也叫高位，后边的U+DC00到U+DFFF叫低位。</p>
 <blockquote>
 <p>所以，当我们遇到两个字节，发现它的码点在U+D800到U+DBFF之间，就可以断定，紧跟在后面的两个字节的码点，应该在U+DC00到U+DFFF之间，这四个字节必须放在一起解读。  </p>
 </blockquote>
@@ -420,7 +420,7 @@ U+<span class="number">1</span>F467：女孩
             <!-- <p>原文作者：<a href="https://zhangxuekang.com">zhangxk</a>  -->
             <!-- <p>原文链接：<a href="https://zhangxuekang.com/2019/05/23/unicode/">https://zhangxuekang.com/2019/05/23/unicode/</a>  -->
             <!-- <p>发表日期：<a href="https://zhangxuekang.com/2019/05/23/unicode/">May 23rd 2019, 8:54:08 pm</a>  -->
-            <!-- <p>更新日期：<a href="https://zhangxuekang.com/2019/05/23/unicode/">May 27th 2019, 11:12:52 am</a>  -->
+            <!-- <p>更新日期：<a href="https://zhangxuekang.com/2019/05/23/unicode/">May 27th 2019, 11:27:53 am</a>  -->
             <p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -645,6 +645,8 @@ top:50vh;
     
     
     
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 8
@@ -715,17 +717,17 @@ top:50vh;
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="命令"><span class="iconfont-archer">&#xe606;</span>命令</span>
-    
-        <span class="sidebar-tag-name" data-tags="终端"><span class="iconfont-archer">&#xe606;</span>终端</span>
-    
         <span class="sidebar-tag-name" data-tags="javascript"><span class="iconfont-archer">&#xe606;</span>javascript</span>
-    
-        <span class="sidebar-tag-name" data-tags="鼠标跟随"><span class="iconfont-archer">&#xe606;</span>鼠标跟随</span>
     
         <span class="sidebar-tag-name" data-tags="鼠标"><span class="iconfont-archer">&#xe606;</span>鼠标</span>
     
         <span class="sidebar-tag-name" data-tags="svg"><span class="iconfont-archer">&#xe606;</span>svg</span>
+    
+        <span class="sidebar-tag-name" data-tags="鼠标跟随"><span class="iconfont-archer">&#xe606;</span>鼠标跟随</span>
+    
+        <span class="sidebar-tag-name" data-tags="命令"><span class="iconfont-archer">&#xe606;</span>命令</span>
+    
+        <span class="sidebar-tag-name" data-tags="终端"><span class="iconfont-archer">&#xe606;</span>终端</span>
     
         <span class="sidebar-tag-name" data-tags="=="><span class="iconfont-archer">&#xe606;</span>==</span>
     
@@ -770,9 +772,9 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="common"><span class="iconfont-archer">&#xe60a;</span>common</span>
-    
         <span class="sidebar-category-name" data-categories="javascript"><span class="iconfont-archer">&#xe60a;</span>javascript</span>
+    
+        <span class="sidebar-category-name" data-categories="common"><span class="iconfont-archer">&#xe60a;</span>common</span>
     
         <span class="sidebar-category-name" data-categories="项目"><span class="iconfont-archer">&#xe60a;</span>项目</span>
     
