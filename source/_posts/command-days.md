@@ -103,6 +103,13 @@ git push origin :refs/tags/<tagname>
 ```  
 这样可以删除远程的标签（需要先在本地删除再删远程）。
 
+### 2019-05-28
+```shell
+lsof -i tcp:<端口号>
+```  
+查询端口号的占用情况，会显示出PID，方便kill。
+
+
 
 
 
