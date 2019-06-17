@@ -107,7 +107,13 @@ git push origin :refs/tags/<tagname>
 ```shell
 lsof -i tcp:<端口号>
 ```  
-查询端口号的占用情况，会显示出PID，方便kill。
+查询端口号的占用情况，会显示出PID，方便kill。  
+
+### 2019-06-17
+```shell
+git push origin <xx> -f
+```  
+reset --hard版本回退后，只是本地回退。push的时候加-f参数，将远端代码也进行回退。不加参数push不了。 
 
 
 
