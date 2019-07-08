@@ -113,7 +113,13 @@ lsof -i tcp:<端口号>
 ```shell
 git push origin <xx> -f
 ```  
-reset --hard版本回退后，只是本地回退。push的时候加-f参数，将远端代码也进行回退。不加参数push不了。 
+reset --hard版本回退后，只是本地回退。push的时候加-f参数，将远端代码也进行回退。不加参数push不了。   
+
+### 2019-07-08
+```shell
+git checkout origin/<xx> -b <xx>
+```  
+基于远程的xx分支新建本地分支xx。
 
 
 
