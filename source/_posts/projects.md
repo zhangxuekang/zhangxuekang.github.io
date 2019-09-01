@@ -7,6 +7,7 @@ header_image: https://source.unsplash.com/random
 ---
 # 游戏  
 * [贪吃蛇](https://zhangxuekang.com/snake/index.html)
+* [坦克大战](https://zhangxuekang.com/tank/tank.html)
 
 # 其他  
 * [draft.js富文本编辑器](https://zhangxuekang.com/rich-text/index.html)
