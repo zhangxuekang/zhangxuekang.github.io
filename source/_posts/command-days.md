@@ -119,7 +119,13 @@ reset --hard版本回退后，只是本地回退。push的时候加-f参数，�
 ```shell
 git checkout origin/<xx> -b <xx>
 ```  
-基于远程的xx分支新建本地分支xx。
+基于远程的xx分支新建本地分支xx。  
+
+### 2019-09-09
+```shell
+git reset --soft HEAD^
+```  
+撤销上次commit，不撤销add .
 
 
 
