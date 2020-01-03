@@ -68,6 +68,35 @@
   </entry>
   
   <entry>
+    <title>移动端页面元素尺寸解决方案之一</title>
+    <link href="https://zhangxuekang.com/2020/01/03/mobile-size-set/"/>
+    <id>https://zhangxuekang.com/2020/01/03/mobile-size-set/</id>
+    <published>2020-01-03T08:14:05.000Z</published>
+    <updated>2020-01-03T09:09:24.113Z</updated>
+    
+    <content type="html"><![CDATA[<p>如果html5要适应各种分辨率的移动设备,应该使用rem这样的尺寸单位.主流做法基本也都是这样做的.但是,如果html5页面是在webview中打开的,并且webview不是通常的手机视窗尺寸,而是占了部分页面,使用rem单位的转化标准就没有了通用性.面对这种情况,可以尝试以下的解决方案.<br><img alt="非全屏的webview" src="https://zhangxuekang.com/src/blog/mobile-size-set/mobile-size.png" width="60%"></p><h2 id="使用transform的scale来适配所有尺寸的view"><a href="#使用transform的scale来适配所有尺寸的view" class="headerlink" title="使用transform的scale来适配所有尺寸的view"></a>使用transform的scale来适配所有尺寸的view</h2><p>设计稿的尺寸一般是px,那么写页面的时候,就使用px单位,大小和设计稿保持一致就好.内容区域的最外层使用scale缩放,缩放的比例根据内容区原始的尺寸与渲染区域(如果是webview中就是webview的大小,如果是浏览器中就是浏览器视窗的大小)的比例来决定的.</p><p>举个例子,写个demo:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"main"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure></p><p>class为main的dev是内容区域,内部可以随意添加布置元素.想达到的效果是main元素随着窗口等比例放大缩小,宽最大不超过视窗的宽,高最大不超过视窗的高.<br>main元素关键样式:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">/* 宽高根据设计稿来就行,不必须是正方形区域 */</span></span><br><span class="line"><span class="selector-class">.main</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">720px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">720px</span>;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">translateX</span>(-50%) <span class="built_in">translateY</span>(-50%);</span><br><span class="line">  <span class="attribute">transform-origin</span>: center center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>页面加载好后,监听视窗尺寸的变化,修改main元素的transform属性:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'resize'</span>, updateSize)</span><br><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'load'</span>, updateSize)</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">updateSize</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 获取视窗尺寸</span></span><br><span class="line">  <span class="keyword">const</span> bodyW = <span class="built_in">document</span>.documentElement.clientWidth;</span><br><span class="line">  <span class="keyword">const</span> bodyH = <span class="built_in">document</span>.documentElement.clientHeight;</span><br><span class="line">  <span class="comment">// 计算比例,用视窗尺寸与内容的实际尺寸相除</span></span><br><span class="line">  <span class="keyword">const</span> wScale = bodyW / <span class="number">720</span>;</span><br><span class="line">  <span class="keyword">const</span> hScale = bodyH / <span class="number">720</span>;</span><br><span class="line">  <span class="keyword">const</span> scale = <span class="built_in">Math</span>.min(wScale, hScale);</span><br><span class="line">  <span class="keyword">const</span> $main = <span class="built_in">document</span>.querySelector(<span class="string">'.main'</span>);</span><br><span class="line">  $main.style.transform = <span class="string">`translateX(-50%) translateY(-50%) scale(<span class="subst">$&#123;scale&#125;</span>)`</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p><a href="https://zhangxuekang.com/src/blog/mobile-size-set/hedgehog.html">点击这里看demo,修改浏览器视窗大小看效果</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;如果html5要适应各种分辨率的移动设备,应该使用rem这样的尺寸单位.主流做法基本也都是这样做的.但是,如果html5页面是在webview中打开的,并且webview不是通常的手机视窗尺寸,而是占了部分页面,使用rem单位的转化标准就没有了通用性.面对这种情况,可以尝试
+      
+    
+    </summary>
+    
+      <category term="html" scheme="https://zhangxuekang.com/categories/html/"/>
+    
+    
+      <category term="html" scheme="https://zhangxuekang.com/tags/html/"/>
+    
+      <category term="移动端" scheme="https://zhangxuekang.com/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/"/>
+    
+      <category term="尺寸" scheme="https://zhangxuekang.com/tags/%E5%B0%BA%E5%AF%B8/"/>
+    
+  </entry>
+  
+  <entry>
     <title>使元素的高度根据宽度变化的一种实现方式</title>
     <link href="https://zhangxuekang.com/2019/12/11/width-height/"/>
     <id>https://zhangxuekang.com/2019/12/11/width-height/</id>
