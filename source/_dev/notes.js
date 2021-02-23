@@ -211,3 +211,35 @@
     return result
   }
 }
+// 数字变化函数
+{
+  function countUp(options, spitOut) {
+    const { duration, startNumber, n } = {
+      duration: 1000,
+      startNumber: 0,
+      ...options
+    };
+    if (startNumber >= n) {
+      spitOut(n);
+      return;
+    }
+    let N = startNumber;
+    const startTime = +new Date();
+    requestAnimationFrame(count);
+
+    function count() {
+      const now = +new Date();
+      if (now - startTime >= duration) {
+        spitOut(n);
+      } else {
+        const progress = (now - startTime) / duration; // 可加缓动效果
+        const next = startNumber + Math.floor((n - startNumber) * progress);
+        if (next !== N) {
+          N = next;
+          spitOut(N);
+        }
+        requestAnimationFrame(count);
+      }
+    }
+  }
+}
