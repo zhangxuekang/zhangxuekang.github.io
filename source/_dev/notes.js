@@ -243,3 +243,28 @@
     }
   }
 }
+
+{
+  // 模板渲染函数
+  var str = `<div>
+             {data.a}
+             <span>{data.a}</span>
+             <span>{data.b.c}</span>
+             <span>{data.b.c}</span>
+           </div>`
+
+  function render(tpl, data) {
+    // 补充函数体
+    const htmlStr = tpl.replace(/\{.*?\}/g, (a) => {
+      a = a.replace(/(\{|\})/g, '');
+      a = a.split('.').map(v => v.trim());
+      let value = data;
+      a.forEach((v, i) => {
+        if (i > 0) {
+          value = value[v]
+        }
+      })
+      return value
+    })
+  }
+}
