@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+<link rel="stylesheet" href="/css/main.css?v=7.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.2.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.2.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Draft.js是一个构建富文本编辑器的React框架, 它不是一个富文本编辑器的组件库. draft.js提供构建编辑器的工具, 如何实现, 需要开发者自己去设计. 砖头和水泥都有了, 就差个程序员去盖房子了.   特点 大部分编辑器保存的富文本数据都是html, 数据不够结构化, 查询修改数据很不容易. 而Draft.js提供结构化的数据, 表现能力更加强大.   实现富文本功能的过程中你会发">
+<meta name="keywords" content="react,富文本,draft.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用draft.js构建富文本编辑器">
+<meta property="og:url" content="https://zhangxuekang.com/2019/03/30/draft-rich-text/index.html">
+<meta property="og:site_name" content="zhangxk&#39;s blog">
+<meta property="og:description" content="Draft.js是一个构建富文本编辑器的React框架, 它不是一个富文本编辑器的组件库. draft.js提供构建编辑器的工具, 如何实现, 需要开发者自己去设计. 砖头和水泥都有了, 就差个程序员去盖房子了.   特点 大部分编辑器保存的富文本数据都是html, 数据不够结构化, 查询修改数据很不容易. 而Draft.js提供结构化的数据, 表现能力更加强大.   实现富文本功能的过程中你会发">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://zhangxuekang.com/src/blog/draft-rich-text/text-editor.png">
+<meta property="og:updated_time" content="2019-04-07T00:36:53.023Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用draft.js构建富文本编辑器">
+<meta name="twitter:description" content="Draft.js是一个构建富文本编辑器的React框架, 它不是一个富文本编辑器的组件库. draft.js提供构建编辑器的工具, 如何实现, 需要开发者自己去设计. 砖头和水泥都有了, 就差个程序员去盖房子了.   特点 大部分编辑器保存的富文本数据都是html, 数据不够结构化, 查询修改数据很不容易. 而Draft.js提供结构化的数据, 表现能力更加强大.   实现富文本功能的过程中你会发">
+<meta name="twitter:image" content="https://zhangxuekang.com/src/blog/draft-rich-text/text-editor.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="zhangxk's blog" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="https://zhangxuekang.com/2019/03/30/draft-rich-text/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>使用draft.js构建富文本编辑器 | zhangxk's blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">zhangxk's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">前端博客</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zhangxuekang.com/2019/03/30/draft-rich-text/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhangxk">
+      <meta itemprop="description" content="zhangxk的前端博客 Stay hungry Stay foolish">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zhangxk's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">使用draft.js构建富文本编辑器
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-30 15:46:25" itemprop="dateCreated datePublished" datetime="2019-03-30T15:46:25+08:00">2019-03-30</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-07 08:36:53" itemprop="dateModified" datetime="2019-04-07T08:36:53+08:00">2019-04-07</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/react/" itemprop="url" rel="index"><span itemprop="name">react</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="https://draftjs.org/" target="_blank" rel="noopener">Draft.js</a>是一个构建富文本编辑器的React框架, 它不是一个富文本编辑器的组件库. draft.js提供构建编辑器的工具, 如何实现, 需要开发者自己去设计. 砖头和水泥都有了, 就差个程序员去盖房子了.  </p>
+<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><ul>
+<li>大部分编辑器保存的富文本数据都是html, 数据不够结构化, 查询修改数据很不容易. 而Draft.js提供结构化的数据, 表现能力更加强大.  </li>
+<li>实现富文本功能的过程中你会发现, Draft.js没有直接操作dom. 数据和渲染的完全分离, 使开发者只需要关注数据层.  </li>
+<li>在Draft.js中, 所有的事情都是开发者自己去定制的, 灵活性高, 可扩展性强.  </li>
+<li>不管是多样的行内样式还是复杂块级样式, 使用Draft.js都可以方便配置.  </li>
+</ul>
+<h2 id="开始使用"><a href="#开始使用" class="headerlink" title="开始使用"></a>开始使用</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>Draft.js依赖React和React DOM, 确保项目中安装了这两项.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install --save draft-js react react-dom</span><br><span class="line"><span class="comment"># 或者</span></span><br><span class="line">yarn add draft-js react react-dom</span><br></pre></td></tr></table></figure></p>
+<h3 id="基础使用"><a href="#基础使用" class="headerlink" title="基础使用"></a>基础使用</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> ReactDOM <span class="keyword">from</span> <span class="string">'react-dom'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;Editor, EditorState&#125; <span class="keyword">from</span> <span class="string">'draft-js'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyEditor</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line">    <span class="keyword">this</span>.state = &#123;<span class="attr">editorState</span>: EditorState.createEmpty()&#125;;</span><br><span class="line">    <span class="keyword">this</span>.onChange = <span class="function">(<span class="params">editorState</span>) =&gt;</span> <span class="keyword">this</span>.setState(&#123;editorState&#125;);</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        &lt;Editor editorState=&#123;<span class="keyword">this</span>.state.editorState&#125; onChange=&#123;<span class="keyword">this</span>.onChange&#125; /&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;MyEditor /&gt;,</span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">'container'</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>如果配置正常的话, 应该能看到一个可输入区域.<br>简单看下是怎么实现的, 使用过React表单控件的开发应该知道: </p>
+<blockquote>
+<p>其值由 React 控制的输入表单元素称为“受控组件”。  </p>
+</blockquote>
+<p>Draft.js构建的富文本编辑器也是一个”受控组件”, 使用方法和input控件一样, 指定数据源(this.state.editorState), 添加控制函数(this.onChange). onChange方法触发后, Draft.js会将最新的editorState作为参数传出来, 用新数据渲染, 实现同步更新.<br>因为还没有配置富文本渲染方法, 所以目前还是纯文本编辑器. <a href="https://github.com/facebook/draft-js/issues/1744" target="_blank" rel="noopener">Draft.css</a>文件是默认的渲染样式, 需要在项目中引入生效.  </p>
+<h2 id="行内样式"><a href="#行内样式" class="headerlink" title="行内样式"></a>行内样式</h2><h3 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h3><p>RichUtils模块拥有很多操作富文本的方法, 现在我们使用RichUtils.handleKeyCommand来实现快捷键修改文本样式的功能.<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyEditor</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line">    <span class="keyword">this</span>.state = &#123;<span class="attr">editorState</span>: EditorState.createEmpty()&#125;;</span><br><span class="line">    <span class="keyword">this</span>.onChange = <span class="function">(<span class="params">editorState</span>) =&gt;</span> <span class="keyword">this</span>.setState(&#123;editorState&#125;);</span><br><span class="line">    <span class="keyword">this</span>.handleKeyCommand = <span class="keyword">this</span>.handleKeyCommand.bind(<span class="keyword">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  handleKeyCommand(command, editorState) &#123;</span><br><span class="line">    <span class="keyword">const</span> newState = RichUtils.handleKeyCommand(editorState, command);</span><br><span class="line">    <span class="keyword">if</span> (newState) &#123;</span><br><span class="line">      <span class="keyword">this</span>.onChange(newState);</span><br><span class="line">      <span class="keyword">return</span> <span class="string">'handled'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'not-handled'</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;Editor</span><br><span class="line">        editorState=&#123;<span class="keyword">this</span>.state.editorState&#125;</span><br><span class="line">        handleKeyCommand=&#123;<span class="keyword">this</span>.handleKeyCommand&#125;</span><br><span class="line">        onChange=&#123;<span class="keyword">this</span>.onChange&#125;</span><br><span class="line">      /&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>handleKeyCommand是控制键盘快捷键的接口.<br>Draft.js默认的快捷键有Cmd+B(加粗), Cmd+I(斜体)等, 当然, 你也可以自己定义快捷键.<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;Editor, getDefaultKeyBinding, KeyBindingUtil&#125; <span class="keyword">from</span> <span class="string">'draft-js'</span>;</span><br><span class="line"><span class="keyword">const</span> &#123;hasCommandModifier&#125; = KeyBindingUtil;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyEditor</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  handleKeyCommand(command: string): DraftHandleValue &#123;</span><br><span class="line">    <span class="keyword">if</span> (command === <span class="string">'my-key'</span>) &#123;</span><br><span class="line">      <span class="comment">// do something ...</span></span><br><span class="line">      <span class="comment">// 必须返回'handled', 告诉Draft.js采用修改,设置新的editorState</span></span><br><span class="line">      <span class="keyword">return</span> <span class="string">'handled'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'not-handled'</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;Editor</span><br><span class="line">        editorState=&#123;<span class="keyword">this</span>.state.editorState&#125;</span><br><span class="line">        handleKeyCommand=&#123;<span class="keyword">this</span>.handleKeyCommand&#125;</span><br><span class="line">        keyBindingFn=&#123;myKeyBindingFn&#125;</span><br><span class="line">        ...</span><br><span class="line">      /&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myKeyBindingFn</span>(<span class="params">e: SyntheticKeyboardEvent</span>): <span class="title">string</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (e.keyCode === <span class="number">83</span> &amp;&amp; hasCommandModifier(e)) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'my-key'</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> getDefaultKeyBinding(e);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="按钮"><a href="#按钮" class="headerlink" title="按钮"></a>按钮</h3><p>在开发富文本编辑器中, 最常用的还是样式按钮. 看Draft.js如何监听一次点击事件设置样式.<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyEditor</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="comment">// …</span></span><br><span class="line">  handleBoldClick() &#123;</span><br><span class="line">    <span class="keyword">this</span>.onChange(RichUtils.toggleInlineStyle(<span class="keyword">this</span>.state.editorState, <span class="string">'BOLD'</span>));</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;button onClick=&#123;<span class="keyword">this</span>.handleBoldClick.bind(<span class="keyword">this</span>)&#125;&gt;Bold&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">        &lt;Editor</span></span><br><span class="line"><span class="regexp">          editorState=&#123;this.state.editorState&#125;</span></span><br><span class="line"><span class="regexp">          handleKeyCommand=&#123;this.handleKeyCommand&#125;</span></span><br><span class="line"><span class="regexp">          onChange=&#123;this.onChange&#125;</span></span><br><span class="line"><span class="regexp">        /</span>&gt;</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure></p>
+<p>RichUtils.toggleInlineStyle(this.state.editorState, ‘BOLD’)将当前选择的文字设置为加粗样式, 返回修改后的editorState, ‘BOLD’是Draft.js设置好的样式名称, 其他的还有’ITALIC’, ‘UNDERLINE’, 和 ‘CODE’. 这些样式名称可以直接使用. 要想获得丰富的富文本样式, 肯定要自己定义一套样式规则.<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;Editor&#125; <span class="keyword">from</span> <span class="string">'draft-js'</span>;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * styleMap用来定义渲染规则 </span></span><br><span class="line"><span class="comment"> * key值是样式的名称, 在RichUtils.toggleInlineStyle(EditorState, key)中使用</span></span><br><span class="line"><span class="comment"> * value是渲染的css规则, 其中用驼峰格式来标识样式属性</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line"><span class="keyword">const</span> styleMap = &#123;</span><br><span class="line">  <span class="string">'STRIKETHROUGH'</span>: &#123;</span><br><span class="line">    textDecoration: <span class="string">'line-through'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">'COLOR_RED'</span>: &#123;</span><br><span class="line">    color: <span class="string">'red'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyEditor</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  handleLineThrough() &#123;</span><br><span class="line">    <span class="keyword">this</span>.onChange(RichUtils.toggleInlineStyle(<span class="keyword">this</span>.state.editorState, <span class="string">'COLOR_RED'</span>));</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;button onClick=&#123;<span class="keyword">this</span>.handleLineThrough.bind(<span class="keyword">this</span>)&#125;&gt;删除线&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">        &lt;Editor</span></span><br><span class="line"><span class="regexp">          customStyleMap=&#123;styleMap&#125; /</span><span class="regexp">/ 必须在这里指定自定义的样式规则</span></span><br><span class="line"><span class="regexp">          editorState=&#123;this.state.editorState&#125;</span></span><br><span class="line"><span class="regexp">          ...</span></span><br><span class="line"><span class="regexp">        /</span>&gt;</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure></p>
+<p>现在, 行内样式已经搞定了. 在实际开发中, 最好将行内样式定义放在一个单独的文件中, 在要使用的地方用import导入进来, 更近一步可以将执行修改的逻辑也放在控制层, 组件只负责渲染.  </p>
+<h2 id="块级样式"><a href="#块级样式" class="headerlink" title="块级样式"></a>块级样式</h2><p>Draft.js提供了常用的块级样式类型:  </p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">HTML element</th>
+<th style="text-align:left">Draft block type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">&lt;h1/></td>
+<td style="text-align:left">header-one</td>
+</tr>
+<tr>
+<td style="text-align:left">&lt;h2/></td>
+<td style="text-align:left">header-two</td>
+</tr>
+<tr>
+<td style="text-align:left">&lt;h3/></td>
+<td style="text-align:left">header-three</td>
+</tr>
+<tr>
+<td style="text-align:left">&lt;h4/></td>
+<td style="text-align:left">header-four</td>
+</tr>
+<tr>
+<td style="text-align:left">&lt;h5/></td>
+<td style="text-align:left">header-five</td>
+</tr>
+<tr>
+<td style="text-align:left">&lt;h6/></td>
+<td style="text-align:left">header-six</td>
+</tr>
+<tr>
+<td style="text-align:left">&lt;blockquote/></td>
+<td style="text-align:left">blockquote</td>
+</tr>
+<tr>
+<td style="text-align:left">&lt;pre/></td>
+<td style="text-align:left">code-block</td>
+</tr>
+<tr>
+<td style="text-align:left">&lt;figure/></td>
+<td style="text-align:left">atomic</td>
+</tr>
+<tr>
+<td style="text-align:left">&lt;li/></td>
+<td style="text-align:left">unordered-list-item,ordered-list-item**</td>
+</tr>
+<tr>
+<td style="text-align:left">&lt;div/></td>
+<td style="text-align:left">unstyled***</td>
+</tr>
+</tbody>
+</table>
+<p>blockStyleFn属性可以让开发者自己定义渲染块级样式的class, 贴上官网的例子:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;Editor&#125; <span class="keyword">from</span> <span class="string">'draft-js'</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myBlockStyleFn</span>(<span class="params">contentBlock</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> type = contentBlock.getType();</span><br><span class="line">  <span class="keyword">if</span> (type === <span class="string">'blockquote'</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'superFancyBlockquote'</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">EditorWithFancyBlockquotes</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">Editor</span> <span class="attr">...</span> <span class="attr">blockStyleFn</span>=<span class="string">&#123;myBlockStyleFn&#125;</span> /&gt;</span>;</span></span><br><span class="line"><span class="xml">  &#125;</span></span><br><span class="line"><span class="xml">&#125;</span></span><br></pre></td></tr></table></figure></p>
+<p>然后在css文件中定义superFancyBlockquote类的样式:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.superFancyBlockquote</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#999</span>;</span><br><span class="line">  <span class="attribute">font-family</span>: <span class="string">'Hoefler Text'</span>, Georgia, serif;</span><br><span class="line">  <span class="attribute">font-style</span>: italic;</span><br><span class="line">  <span class="attribute">text-align</span>: center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>blockRenderMap属性可以让开发者自己定义块的渲染规则, 可以覆盖默认规则, 也可以添加新的规则.<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> blockRenderMap = Immutable.Map(&#123;</span><br><span class="line">  <span class="string">'header-two'</span>: &#123;</span><br><span class="line">    element: <span class="string">'div'</span> <span class="comment">// 覆盖了默认的规则</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 定义新类型</span></span><br><span class="line">  <span class="string">'ul-disc'</span>: &#123; </span><br><span class="line">    element: <span class="string">'li'</span>, <span class="comment">// 渲染标签</span></span><br><span class="line">    wrapper: React.createElement(<span class="string">'ul'</span>, &#123; <span class="attr">className</span>: <span class="string">'public-DraftStyleDefault-ul ul-disc'</span> &#125;) <span class="comment">// 定义包裹的组件, 类名加上默认的类名和自定义的</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 需要merge到默认的规则里边</span></span><br><span class="line"><span class="keyword">const</span> extendedBlockRenderMap = DefaultDraftBlockRenderMap.merge(getBlockRender())</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RichEditor</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">  handleUlClick() &#123;</span><br><span class="line">    <span class="keyword">this</span>.onChange(</span><br><span class="line">      RichUtils.toggleBlockType(</span><br><span class="line">        <span class="keyword">this</span>.state.editorState,</span><br><span class="line">        <span class="string">'ul-disc'</span></span><br><span class="line">    ));</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;button onClick=&#123;<span class="keyword">this</span>.handleUlClick.bind(<span class="keyword">this</span>)&#125;&gt;UL&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">        &lt;Editor</span></span><br><span class="line"><span class="regexp">          ...</span></span><br><span class="line"><span class="regexp">          blockRenderMap=&#123;extendedBlockRenderMap&#125;</span></span><br><span class="line"><span class="regexp">        /</span>&gt;</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure></p>
+<p>需要在自己的样式表中定义.ul-disc的样式, 样式表必须引入才能生效:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.ul-disc</span>&#123;</span><br><span class="line">  <span class="attribute">list-style-type</span>: disc;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>先附上自己写的初版富文本链接<a href="https://zhangxuekang.com/rich-text/index.html">demo</a>.<br><img src="https://zhangxuekang.com/src/blog/draft-rich-text/text-editor.png" alt="富文本编辑器"><br>这就是Draft.js的基础应该用, 更多的功能例如超链接, 图片等有时间再撰文介绍. 打铁还需自身硬, 要想使用好Draft.js, 要需要自己去多研究多实践. 官网介绍挺全的(就是一些API很不友好). 附上官网的链接<a href="https://draftjs.org/" target="_blank" rel="noopener">https://draftjs.org/</a>. 知乎也是用的Draft.js构建的富文本编辑器, 但是知乎也只用了Draft.js的皮毛, 足以支撑起一个普通的文章编辑和评论编辑器了. 如果你想要构建一个online word, 只能祝你好运.<br>附上两篇相关文章:<br><em><a href="https://zhuanlan.zhihu.com/p/24951621" target="_blank" rel="noopener">Draft.js 在知乎的实践</a></em><br><em><a href="https://www.zhihu.com/question/38699645" target="_blank" rel="noopener">为什么都说富文本编辑器是天坑?</a></em></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/react/" rel="tag"># react</a>
+          
+            <a href="/tags/富文本/" rel="tag"># 富文本</a>
+          
+            <a href="/tags/draft-js/" rel="tag"># draft.js</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/30/mouse-svg/" rel="next" title="记录鼠标轨迹, 生成svg路径">
+                <i class="fa fa-chevron-left"></i> 记录鼠标轨迹, 生成svg路径
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/22/trap/" rel="prev" title="踩坑之路">
+                踩坑之路 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">zhangxk</p>
+              <div class="site-description motion-element" itemprop="description">zhangxk的前端博客 Stay hungry Stay foolish</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">分类</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">18</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#特点"><span class="nav-number">1.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开始使用"><span class="nav-number">2.</span> <span class="nav-text">开始使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">2.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基础使用"><span class="nav-number">2.2.</span> <span class="nav-text">基础使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#行内样式"><span class="nav-number">3.</span> <span class="nav-text">行内样式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#快捷键"><span class="nav-number">3.1.</span> <span class="nav-text">快捷键</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#按钮"><span class="nav-number">3.2.</span> <span class="nav-text">按钮</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#块级样式"><span class="nav-number">4.</span> <span class="nav-text">块级样式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhangxk</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.2.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.2.0"></script>
+
+  <script src="/js/motion.js?v=7.2.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.2.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.2.0"></script>
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.2.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
